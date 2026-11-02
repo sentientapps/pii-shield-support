@@ -34,12 +34,19 @@ Key-Value Store (`@forge/kvs`) and Forge SQL. **No external database is used.**
   every reveal is logged. Each site has its own 256-bit encryption key, generated on the site
   when first needed and kept in Forge's secret storage inside Atlassian.
 - **Settings and rules.** Detection settings, your allow list of email addresses and domains,
-  the groups and project roles allowed to reveal values, and custom detection rules.
+  the groups and project roles allowed to reveal values, the projects and fields PII Shield
+  masks, and custom detection rules.
 - **Operational data.** The masking status of each issue, a list of items that couldn't be
   masked automatically (for admin review), Backlog Sweep progress, and daily redaction counts
-  by data type. None of these contain the masked values.
+  by data type. With *Send customer emails after masking*, a record per public reply of whether
+  the customer was emailed, when, and to how many people (kept 90 days). Time-limited reveal
+  access shared with a colleague (issue, account IDs, end time; removed when it ends), and the
+  comments left unmasked on purpose (comment ID and who asked; kept one year). None of these
+  contain the masked values or the text of a comment.
 - **Audit log.** Event type, issue, token, time and the Atlassian account ID of the person
-  who acted (for example, who revealed a value). It contains no plaintext masked values and is
+  who acted (for example, who revealed a value, who left a ticket or comment unmasked, or who
+  shared reveal access, with the colleague's account ID and name), and for customer emails the
+  outcome, comment ID and number of recipients. It contains no plaintext masked values and is
   kept until the App is uninstalled.
 - **Logs.** The App's Forge logs contain issue keys, comment, worklog and attachment IDs,
   counts, data types (such as `EMAIL`), masked file names and error codes — never the original
