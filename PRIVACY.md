@@ -38,15 +38,16 @@ Key-Value Store (`@forge/kvs`) and Forge SQL. **No external database is used.**
   masks, and custom detection rules.
 - **Operational data.** The masking status of each issue, a list of items that couldn't be
   masked automatically (for admin review), Backlog Sweep progress, and daily redaction counts
-  by data type. With *Send customer emails after masking*, a record per public reply of whether
-  the customer was emailed, when, and to how many people (kept 90 days). Time-limited reveal
+  by data type. With *Send customer emails after masking* and *Send agent and watcher emails
+  after masking*, a record per email of whether it was sent, when, and to how many people
+  (kept 90 days). Time-limited reveal
   access shared with a colleague (issue, account IDs, end time; removed when it ends), and the
   comments left unmasked on purpose (comment ID and who asked; kept one year). None of these
   contain the masked values or the text of a comment.
 - **Audit log.** Event type, issue, token, time and the Atlassian account ID of the person
   who acted (for example, who revealed a value, who left a ticket or comment unmasked, or who
-  shared reveal access, with the colleague's account ID and name), and for customer emails the
-  outcome, comment ID and number of recipients. It contains no plaintext masked values and is
+  shared reveal access, with the colleague's account ID and name), and for customer, agent and
+  watcher emails the outcome, comment ID and number of recipients. It contains no plaintext masked values and is
   kept until the App is uninstalled.
 - **Logs.** The App's Forge logs contain issue keys, comment, worklog and attachment IDs,
   counts, data types (such as `EMAIL`), masked file names and error codes — never the original
